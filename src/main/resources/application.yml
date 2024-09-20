@@ -2,8 +2,8 @@ server:
   port: 8080
 spring:
   application:
-    name: ytx-agi
+    name: ytx-agent
     version: 1.0.0
-    description: ytx agi app
+    description: ytx agent server
   profiles:
     active: dev
