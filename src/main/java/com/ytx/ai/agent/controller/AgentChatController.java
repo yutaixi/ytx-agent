@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/agent")
-public class AgentController {
+public class AgentChatController {
 
     @Autowired
     MasterAgent masterAgent;

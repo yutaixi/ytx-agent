@@ -7,3 +7,29 @@ spring:
     description: ytx agent server
   profiles:
     active: dev
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  # 支持扫描，多个package用逗号或者分号隔
+  type-aliases-package: com.ytx.ai.agent.entity
+#  type-enums-package: com.transsion.proj.demo.enums
+  global-config:
+    db-config:
+      id-type: AUTO # AUTO
+      table-prefix:
+      logic-delete-field: deleteFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    # database-id: 0
+  extends:
+    page-limit: 500
+    overflow: false
+    auto-routing: false
+    meta-object-handler: false
+    meta-props:
+    # create-time: createdTime # createTime
+    # create-user: createdBy # createUser
