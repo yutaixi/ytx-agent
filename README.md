@@ -3,7 +3,8 @@
 
 发布预告，目前已在生产业务中使用，正在整理代码，没人催我就慢慢整理：）
 
-
+效果图
+![示例图片](doc/images/demo.png)
 
 # 依赖的框架代码
 https://github.com/yutaixi/ytx-agent-framework

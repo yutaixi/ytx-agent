@@ -33,7 +33,7 @@ public class TestRunWorkflowFromUI {
     public void test_run_workflow(){
 
 
-        SkillEntity skill= skillService.findSkill(24);
+        SkillEntity skill= skillService.findSkill(29);
 
         Workflow workflow=Workflow.of(skill);
         WorkflowWrapper workflowWrapper=new WorkflowWrapper(workflow);

@@ -155,7 +155,7 @@ public class TestWorkflow {
                     },
                     "outputs": {"llm_output": {"type": "string"}}
                 },
-                {
+                {   
                     "id": "4",
                     "componentType": "plugin",
                     "componentId": "llm",
