@@ -1,6 +1,5 @@
 package com.ytx.ai.agent.test.workflow;
 
-import cn.hutool.json.JSONUtil;
 import com.ytx.ai.Application;
 import com.ytx.ai.agent.entity.SkillEntity;
 import com.ytx.ai.agent.service.SkillService;
@@ -33,7 +32,7 @@ public class TestRunWorkflowFromUI {
     public void test_run_workflow(){
 
 
-        SkillEntity skill= skillService.findSkill(29);
+        SkillEntity skill= skillService.findSkill(37);
 
         Workflow workflow=Workflow.of(skill);
         WorkflowWrapper workflowWrapper=new WorkflowWrapper(workflow);
@@ -44,6 +43,6 @@ public class TestRunWorkflowFromUI {
         });
         FlowContext context = FlowContext.of();
         WorkflowOutput workflowOutput = flowExecutor.execute(workflow, context);
-        System.out.println(JSONUtil.toJsonStr(workflowOutput));
+        System.out.println(workflowOutput.getAnswer());
     }
 }
