@@ -17,7 +17,7 @@ public class SkillController {
     private SkillService skillService;
 
     @PostMapping("/upsert")
-    public boolean upsert(@RequestBody SkillEntity skill){
+    public Integer upsert(@RequestBody SkillEntity skill){
         return skillService.upsertSkill(skill);
     }
 
