@@ -1,8 +1,8 @@
 package com.ytx.ai.agent.controller;
 
-import com.ytx.ai.agent.MasterAgent;
-import com.ytx.ai.agent.dto.ChatDTO;
-import com.ytx.ai.agent.vo.AgentResponse;
+import com.ytx.ai.base.agent.AgentResponse;
+import com.ytx.ai.base.agent.ChatDTO;
+import com.ytx.ai.workflow.service.AgentChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/agent")
 public class AgentChatController {
 
+
     @Autowired
-    MasterAgent masterAgent;
+    private AgentChatService agentChatService;
+
 
     @PostMapping("/chat")
     public AgentResponse chat(@RequestBody ChatDTO chatDTO){
-        return masterAgent.run(chatDTO);
+        return agentChatService.run(chatDTO);
     }
 
 }

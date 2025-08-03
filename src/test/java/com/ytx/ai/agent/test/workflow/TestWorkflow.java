@@ -2,7 +2,7 @@ package com.ytx.ai.agent.test.workflow;
 
 import cn.hutool.json.JSONUtil;
 import com.ytx.ai.Application;
-import com.ytx.ai.agent.dto.ChatDTO;
+import com.ytx.ai.base.agent.ChatDTO;
 import com.ytx.ai.workflow.Workflow;
 import com.ytx.ai.workflow.WorkflowOutput;
 import com.ytx.ai.workflow.execute.FlowContext;
@@ -29,13 +29,13 @@ public class TestWorkflow {
             "nodes": [
                 {
                     "id": "0",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "start",
                     "label": "开始"
                 },
                 {
                     "id": "1",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "llm",
                     "label": "大模型写诗",
                     "inputs": {},
@@ -51,13 +51,13 @@ public class TestWorkflow {
                 },
                 {
                     "id": "2",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "code",
                     "label": "执行代码",
                     "inputs": {},
                     "metaData": {
                         "code_script": {
-                            "content": "// 同步函数定义\\r\\nfunction main({ params }) {\\r\\n console.log('this is code plugin running.');\\r\\n const ret = {\\r\\n body: 'this is body'\\r\\n};\\r\\n return ret;\\r\\n}",
+                            "content": "// 同步函数定义\\r\\nfunction main({ params }) {\\r\\n console.log('this is code workflowPlugin running.');\\r\\n const ret = {\\r\\n body: 'this is body'\\r\\n};\\r\\n return ret;\\r\\n}",
                             "type": "string"
                         },
                         "code_language": {"content": "js", "type": "string"},
@@ -73,7 +73,7 @@ public class TestWorkflow {
                 },
                 {
                     "id": "4",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "end",
                     "label": "结束",
                     "outputs": {
@@ -91,7 +91,9 @@ public class TestWorkflow {
         """;
 
         Workflow workflow = JSONUtil.toBean(workflowJson, Workflow.class);
-        FlowContext context = FlowContext.of().chat(ChatDTO.builder().question("heeeeeelooooo").build());
+        ChatDTO chatDTO=new ChatDTO();
+        chatDTO.setQuestion("heeeeeeeellooooo");
+        FlowContext context = FlowContext.of().chat(chatDTO);
         WorkflowOutput workflowOutput = flowExecutor.execute(workflow, context);
         System.out.println(JSONUtil.toJsonStr(workflowOutput));
     }
@@ -103,13 +105,13 @@ public class TestWorkflow {
             "nodes": [
                 {
                     "id": "0",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "start",
                     "label": "开始"
                 },
                 {
                     "id": "1",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "llm",
                     "label": "大模型写诗",
                     "inputs": {},
@@ -125,7 +127,7 @@ public class TestWorkflow {
                 },
                 {
                     "id": "2",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "condition",
                     "label": "条件判断",
                     "inputs": {},
@@ -143,7 +145,7 @@ public class TestWorkflow {
                 },
                 {
                     "id": "3",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "llm",
                     "label": "分支1",
                     "inputs": {},
@@ -157,7 +159,7 @@ public class TestWorkflow {
                 },
                 {   
                     "id": "4",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "llm",
                     "label": "分支2",
                     "inputs": {},
@@ -171,7 +173,7 @@ public class TestWorkflow {
                 },
                 {
                     "id": "5",
-                    "componentType": "plugin",
+                    "componentType": "workflowPlugin",
                     "componentId": "end",
                     "label": "结束",
                     "outputs": {
@@ -190,9 +192,9 @@ public class TestWorkflow {
     """;
 
         Workflow workflow = JSONUtil.toBean(workflowJson, Workflow.class);
-        FlowContext context = FlowContext.of().chat(
-                ChatDTO.builder().question("heeeeeeeellooooo").build()
-        );
+        ChatDTO chatDTO=new ChatDTO();
+        chatDTO.setQuestion("heeeeeeeellooooo");
+        FlowContext context = FlowContext.of().chat( chatDTO );
         WorkflowOutput workflowOutput = flowExecutor.execute(workflow, context);
         System.out.println(JSONUtil.toJsonStr(workflowOutput));
     }

@@ -8,7 +8,7 @@ import com.ytx.ai.workflow.WorkflowOutput;
 import com.ytx.ai.workflow.execute.FlowContext;
 import com.ytx.ai.workflow.execute.FlowExecutor;
 import com.ytx.ai.workflow.execute.WorkflowWrapper;
-import com.ytx.ai.workflow.plugin.FlowStart;
+import com.ytx.ai.workflow.plugin.flow.FlowStart;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,14 +32,14 @@ public class TestRunWorkflowFromUI {
     public void test_run_workflow(){
 
 
-        SkillEntity skill= skillService.findSkill(37);
+        SkillEntity skill= skillService.findSkill(38);
 
         Workflow workflow=Workflow.of(skill);
         WorkflowWrapper workflowWrapper=new WorkflowWrapper(workflow);
         FlowStart.StartNodeMeta startMata= (FlowStart.StartNodeMeta) workflowWrapper.getStartNode().getMeta();
 
         startMata.getInputs().forEach(item->{
-            item.setContent("hello");
+            item.setContent("今天星期几");
         });
         FlowContext context = FlowContext.of();
         WorkflowOutput workflowOutput = flowExecutor.execute(workflow, context);

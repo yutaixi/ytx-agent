@@ -4,6 +4,7 @@ import com.ytx.ai.agent.entity.SkillEntity;
 import com.ytx.ai.agent.service.SkillService;
 import com.ytx.ai.agent.vo.PageSearchVO;
 import com.ytx.ai.agent.vo.PageVO;
+import com.ytx.ai.base.exception.BizException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,11 @@ public class SkillController {
     @PostMapping("/upsert")
     public Integer upsert(@RequestBody SkillEntity skill){
         return skillService.upsertSkill(skill);
+    }
+
+    @PostMapping("/update/description")
+    public int updateDescription(@RequestBody SkillEntity skill) throws BizException {
+        return skillService.updateDescription(skill);
     }
 
     @GetMapping("/find")

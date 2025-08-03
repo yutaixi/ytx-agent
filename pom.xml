@@ -37,6 +37,12 @@
         </dependency>
         <dependency>
             <groupId>com.ytx.ai</groupId>
+            <artifactId>ytx-agent-framework-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ytx.ai</groupId>
             <artifactId>ytx-agent-framework-web</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -57,6 +63,14 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>net.bramp.ffmpeg</groupId>-->
+<!--            <artifactId>ffmpeg</artifactId>-->
+<!--            <version>0.6.2</version>-->
+<!--        </dependency>-->
+
+
     </dependencies>
 
 
