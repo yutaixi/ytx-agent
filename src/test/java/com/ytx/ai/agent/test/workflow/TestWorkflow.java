@@ -29,13 +29,13 @@ public class TestWorkflow {
             "nodes": [
                 {
                     "id": "0",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "start",
                     "label": "开始"
                 },
                 {
                     "id": "1",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "llm",
                     "label": "大模型写诗",
                     "inputs": {},
@@ -51,13 +51,13 @@ public class TestWorkflow {
                 },
                 {
                     "id": "2",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "code",
                     "label": "执行代码",
                     "inputs": {},
                     "metaData": {
                         "code_script": {
-                            "content": "// 同步函数定义\\r\\nfunction main({ params }) {\\r\\n console.log('this is code workflowPlugin running.');\\r\\n const ret = {\\r\\n body: 'this is body'\\r\\n};\\r\\n return ret;\\r\\n}",
+                            "content": "// 同步函数定义\\r\\nfunction main({ params }) {\\r\\n console.log('this is code workflowNode running.');\\r\\n const ret = {\\r\\n body: 'this is body'\\r\\n};\\r\\n return ret;\\r\\n}",
                             "type": "string"
                         },
                         "code_language": {"content": "js", "type": "string"},
@@ -73,7 +73,7 @@ public class TestWorkflow {
                 },
                 {
                     "id": "4",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "end",
                     "label": "结束",
                     "outputs": {
@@ -105,13 +105,13 @@ public class TestWorkflow {
             "nodes": [
                 {
                     "id": "0",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "start",
                     "label": "开始"
                 },
                 {
                     "id": "1",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "llm",
                     "label": "大模型写诗",
                     "inputs": {},
@@ -127,7 +127,7 @@ public class TestWorkflow {
                 },
                 {
                     "id": "2",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "condition",
                     "label": "条件判断",
                     "inputs": {},
@@ -145,7 +145,7 @@ public class TestWorkflow {
                 },
                 {
                     "id": "3",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "llm",
                     "label": "分支1",
                     "inputs": {},
@@ -159,7 +159,7 @@ public class TestWorkflow {
                 },
                 {   
                     "id": "4",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "llm",
                     "label": "分支2",
                     "inputs": {},
@@ -173,7 +173,7 @@ public class TestWorkflow {
                 },
                 {
                     "id": "5",
-                    "componentType": "workflowPlugin",
+                    "componentType": "workflowNode",
                     "componentId": "end",
                     "label": "结束",
                     "outputs": {

@@ -3,5 +3,5 @@ spring:
     name: ytx-agi
     version: 1.0.0
     description: ytx agi app
-  profiles:
-    active: dev
+#  profiles:
+#    active: dev

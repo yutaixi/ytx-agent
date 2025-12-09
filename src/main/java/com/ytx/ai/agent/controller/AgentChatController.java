@@ -1,5 +1,6 @@
 package com.ytx.ai.agent.controller;
 
+import cn.hutool.json.JSONUtil;
 import com.ytx.ai.base.agent.AgentResponse;
 import com.ytx.ai.base.agent.ChatDTO;
 import com.ytx.ai.workflow.service.AgentChatService;
@@ -21,6 +22,12 @@ public class AgentChatController {
     @PostMapping("/chat")
     public AgentResponse chat(@RequestBody ChatDTO chatDTO){
         return agentChatService.run(chatDTO);
+    }
+
+    @PostMapping("/chat/completion")
+    public Object completion(@RequestBody Object obj){
+        System.out.println(JSONUtil.toJsonPrettyStr(obj));
+         return "";
     }
 
 }

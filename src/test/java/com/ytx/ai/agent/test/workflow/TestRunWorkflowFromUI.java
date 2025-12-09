@@ -8,7 +8,7 @@ import com.ytx.ai.workflow.WorkflowOutput;
 import com.ytx.ai.workflow.execute.FlowContext;
 import com.ytx.ai.workflow.execute.FlowExecutor;
 import com.ytx.ai.workflow.execute.WorkflowWrapper;
-import com.ytx.ai.workflow.plugin.flow.FlowStart;
+import com.ytx.ai.workflow.node.internal.FlowStart;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
