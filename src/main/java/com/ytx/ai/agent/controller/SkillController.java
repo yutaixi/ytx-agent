@@ -1,6 +1,7 @@
 package com.ytx.ai.agent.controller;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.ytx.ai.agent.dto.TrialRunRequest;
 import com.ytx.ai.agent.entity.SkillEntity;
 import com.ytx.ai.agent.service.SkillService;
 import com.ytx.ai.agent.vo.PageSearchVO;
@@ -59,15 +60,25 @@ public class SkillController {
     }
 
 
-    @PostMapping("/trial/run/{id}")
-    public Response<WorkflowOutput> trialRun(@RequestBody Map<String, Object> params,
-                                             @PathVariable("id") Integer skillId) {
+    /**
+     * 试运行工作流
+     * @param req 试运行请求参数，包含技能定义和运行参数
+     * @return 工作流执行结果
+     */
+    @PostMapping("/trial/run")
+    public Response<WorkflowOutput> trialRun(@RequestBody TrialRunRequest req) {
         try {
-            // 校验技能是否存在
-            SkillEntity skillEntity = skillService.findSkill(skillId);
-            if (ObjectUtil.isEmpty(skillEntity)) {
-                return Response.error("未找到对应的技能，skillId：" + skillId);
+            // 校验工作流定义是否为空
+            if (ObjectUtil.isEmpty(req.getDefinition())) {
+                return Response.error("工作流定义不能为空");
             }
+
+            // 构造SkillEntity
+            SkillEntity skillEntity = new SkillEntity();
+            skillEntity.setName(req.getName());
+            skillEntity.setDescription(req.getDescription());
+            skillEntity.setType(req.getType());
+            skillEntity.setDefinition(req.getDefinition());
 
             // 转换为工作流
             Workflow workflow = Workflow.of(skillEntity);
@@ -92,7 +103,8 @@ public class SkillController {
 
             // 从前端传输的参数中获取并校验start节点中的inputs
             List<Value> inputs = startNodeMeta.getInputs();
-            if (ObjectUtil.isNotEmpty(inputs)) {
+            Map<String, Object> params = req.getParams();
+            if (ObjectUtil.isNotEmpty(inputs) && ObjectUtil.isNotEmpty(params)) {
                 inputs.forEach(input -> {
                     String inputName = input.getName();
                     if (ObjectUtil.isNotEmpty(inputName) && params.containsKey(inputName)) {
@@ -110,7 +122,7 @@ public class SkillController {
 
             return Response.success(workflowOutput);
         } catch (Exception e) {
-            return Response.error("试运行工作流失败：" + e.getMessage());
+            return Response.error("试运行工作流失败:" + e.getMessage());
         }
     }
 
